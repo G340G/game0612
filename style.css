@@ -1,0 +1,36 @@
+html, body { margin:0; height:100%; background:#050506; overflow:hidden; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+#c { width:100%; height:100%; display:block; }
+
+#hud { position:fixed; inset:0; pointer-events:none; color:#e9e9ef; }
+.top { position:absolute; top:12px; left:12px; display:flex; gap:8px; }
+.chip { pointer-events:none; font-size:12px; letter-spacing:.12em; padding:8px 10px; background:rgba(10,10,12,.55); border:1px solid rgba(255,255,255,.08); border-radius:999px; backdrop-filter: blur(6px); }
+.centerHint { position:absolute; left:50%; top:50%; transform:translate(-50%, calc(-50% + 120px)); font-size:12px; opacity:.85; text-align:center; padding:10px 12px; background:rgba(8,8,10,.45); border:1px solid rgba(255,255,255,.08); border-radius:14px; width:min(720px, calc(100vw - 40px)); }
+
+.crosshair { position:absolute; left:50%; top:50%; width:14px; height:14px; transform:translate(-50%,-50%); opacity:.7; }
+.crosshair::before, .crosshair::after { content:""; position:absolute; background:rgba(255,255,255,.65); }
+.crosshair::before { left:50%; top:0; width:2px; height:14px; transform:translateX(-50%); }
+.crosshair::after { top:50%; left:0; width:14px; height:2px; transform:translateY(-50%); }
+
+.dialogue { position:absolute; left:50%; bottom:26px; transform:translateX(-50%); width:min(860px, calc(100vw - 40px));
+  background:rgba(6,6,8,.66); border:1px solid rgba(255,255,255,.10); border-radius:18px; padding:16px 16px 12px; backdrop-filter: blur(8px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.55);
+}
+.dialogueTitle { font-size:12px; letter-spacing:.22em; opacity:.9; }
+.dialogueText { margin-top:10px; font-size:14px; line-height:1.45; opacity:.95; }
+.choices { margin-top:12px; display:grid; gap:8px; }
+.choice { pointer-events:none; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.10); background:rgba(12,12,16,.40); font-size:13px; }
+.choice b { letter-spacing:.18em; font-size:12px; opacity:.9; margin-right:8px; }
+.small { margin-top:10px; font-size:11px; opacity:.65; letter-spacing:.08em; }
+.hidden { display:none; }
+
+.footer { position:absolute; left:12px; bottom:12px; display:flex; gap:10px; }
+.meter { pointer-events:none; padding:10px 12px; border-radius:14px; background:rgba(10,10,12,.55); border:1px solid rgba(255,255,255,.08); backdrop-filter: blur(6px); width:180px; }
+.meter .label { font-size:10px; letter-spacing:.22em; opacity:.7; }
+.bar { margin-top:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.06); overflow:hidden; }
+.fill { height:100%; width:50%; background:rgba(255,255,255,.5); }
+
+.vhs { position:absolute; right:12px; top:12px; width:260px; padding:10px 12px; border-radius:14px;
+  background:rgba(8,8,10,.45); border:1px solid rgba(255,255,255,.08); backdrop-filter: blur(6px);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+.vhsLine { font-size:12px; letter-spacing:.1em; opacity:.9; }
