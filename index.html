@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FOG//CITY — Browser Horror</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="hud">
+    <div class="top">
+      <div class="chip">FOG//CITY</div>
+      <div class="chip" id="levelChip">FORESTA</div>
+      <div class="chip" id="psyChip">PSYCHE 50</div>
+      <div class="chip" id="hpChip">HP 100</div>
+    </div>
+
+    <div class="centerHint" id="hint">
+      Clicca per entrare • WASD muovi • Mouse guarda • Shift corri • F torcia • E interagisci
+    </div>
+
+    <div class="crosshair" id="crosshair"></div>
+
+    <div class="dialogue hidden" id="dialogue">
+      <div class="dialogueTitle" id="dlgTitle">…</div>
+      <div class="dialogueText" id="dlgText">…</div>
+      <div class="choices" id="dlgChoices"></div>
+      <div class="small">1-4 per scegliere • Esc per chiudere</div>
+    </div>
+
+    <div class="vhs hidden" id="vhs">
+      <div class="vhsLine">REC ●</div>
+      <div class="vhsLine" id="vhsInfo">TAPE: FGC-09 // TRACKING -03</div>
+    </div>
+
+    <div class="footer">
+      <div class="meter">
+        <div class="label">NEBBIA</div>
+        <div class="bar"><div id="fogBar" class="fill"></div></div>
+      </div>
+      <div class="meter">
+        <div class="label">DREAD</div>
+        <div class="bar"><div id="dreadBar" class="fill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="c"></canvas>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
