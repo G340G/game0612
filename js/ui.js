@@ -1,3 +1,4 @@
+// js/ui.js
 import { clamp } from "./utils.js";
 
 export class UI {
@@ -18,6 +19,24 @@ export class UI {
     this.elVhs = document.getElementById("vhs");
     this.elVhsInfo = document.getElementById("vhsInfo");
 
+    // FATAL overlay
+    this.fatalEl = document.createElement("div");
+    this.fatalEl.style.position = "fixed";
+    this.fatalEl.style.inset = "12px";
+    this.fatalEl.style.background = "rgba(0,0,0,.72)";
+    this.fatalEl.style.border = "1px solid rgba(255,255,255,.12)";
+    this.fatalEl.style.borderRadius = "18px";
+    this.fatalEl.style.padding = "14px 16px";
+    this.fatalEl.style.fontFamily = "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
+    this.fatalEl.style.fontSize = "12px";
+    this.fatalEl.style.letterSpacing = ".06em";
+    this.fatalEl.style.color = "#e9e9ef";
+    this.fatalEl.style.whiteSpace = "pre-wrap";
+    this.fatalEl.style.pointerEvents = "none";
+    this.fatalEl.style.display = "none";
+    this.fatalEl.style.zIndex = "9999";
+    document.body.appendChild(this.fatalEl);
+
     this.dialogueOpen = false;
     this.currentChoiceCount = 0;
     this.onPick = null;
@@ -28,6 +47,20 @@ export class UI {
       const idx = ({Digit1:0, Digit2:1, Digit3:2, Digit4:3})[e.code];
       if (idx !== undefined) this.pick(idx);
     });
+  }
+
+  showFatal(err){
+    const msg = (err && err.stack) ? err.stack : String(err);
+    this.fatalEl.textContent =
+`[FATAL] Il loop ha catturato un errore e non si è fermato.
+Sei bloccato perché JS stava crashando o la GPU ha perso contesto.
+
+${msg}`;
+    this.fatalEl.style.display = "block";
+  }
+
+  hideFatal(){
+    this.fatalEl.style.display = "none";
   }
 
   setHintVisible(v){ this.elHint.classList.toggle("hidden", !v); }
@@ -73,7 +106,6 @@ export class UI {
     this.closeDialogue();
   }
 
-  // VHS overlay occasional
   vhsPulse(text){
     this.elVhsInfo.textContent = text;
     this.elVhs.classList.remove("hidden");
@@ -81,3 +113,4 @@ export class UI {
     this._vhsT = setTimeout(()=>this.elVhs.classList.add("hidden"), 900 + Math.random()*700);
   }
 }
+
